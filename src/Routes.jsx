@@ -6,8 +6,8 @@ import Homepage from "./Layout/Homepage/Homepage";
 import AllList from "./Layout/Homepage/AllList";
 import AddNewCraft from "./Layout/Homepage/AddNewCraft";
 import MyList from "./Layout/Homepage/MyList";
-import Login from "./Layout/Login/Register/Login";
-import Register from "./Layout/Login/Register/Register";
+import Login from "./Layout/LoginRegister/Login";
+import Register from "./Layout/LoginRegister/Register";
   
   export const Router = createBrowserRouter([
     {
