@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProvider';
 
 const Navbar = () => {
+    const { user , logOut} = useContext(AuthContext);
 
     const navItem = <>
         <li className='trirong-font font-medium'><NavLink to='/'>Home</NavLink></li>
@@ -10,6 +12,12 @@ const Navbar = () => {
         <li className='trirong-font '><NavLink to='/my-list'>My Art & Craft List</NavLink></li>
 
     </>
+
+    const handleLogOut = () => {
+        logOut()
+        .then(result => console.log(result))
+        .catch(error => console.log(error))
+    }
 
     return (
         <div className="navbar bg-[#faf7f2] fixed z-10">
@@ -29,10 +37,35 @@ const Navbar = () => {
                     {navItem}
                 </ul>
             </div>
-            <div className="navbar-end gap-3">
-                <Link to='/login'><button className='bg-[#b18b5e] text-white outfit-font px-3 py-2' >Login</button></Link>
-                <Link to='/register'><button className='bg-[#b18b5e] text-white outfit-font px-3 py-2' >Register</button></Link>
-            </div>
+
+            {user ?
+                <div className="flex-none gap-2">
+                    <div className="form-control">
+                        <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
+                    </div>
+                    <div className="dropdown dropdown-end">
+                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                            <div className="w-10 rounded-full">
+                                <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                            </div>
+                        </div>
+                        <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                            <li>
+                                <a className="justify-between">
+                                    Profile
+                                    <span className="badge">New</span>
+                                </a>
+                            </li>
+                            <li><a>Settings</a></li>
+                            <li onClick={handleLogOut}><a>Logout</a></li>
+                        </ul>
+                    </div>
+                </div> :
+
+                <div className="navbar-end gap-3">
+                    <Link to='/login'><button className='bg-[#b18b5e] text-white outfit-font px-3 py-2' >Login</button></Link>
+                    <Link to='/register'><button className='bg-[#b18b5e] text-white outfit-font px-3 py-2' >Register</button></Link>
+                </div>}
         </div>
     );
 };
