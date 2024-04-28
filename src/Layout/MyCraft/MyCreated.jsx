@@ -1,11 +1,11 @@
 import React from 'react';
 
-const AddNewCraft = () => {
+const MyCreated = () => {
     return (
         <div>
-            AddNewCraft
+            MyCreated
         </div>
     );
 };
 
-export default AddNewCraft;
+export default MyCreated;
