@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './styles.css';
 import { useFormik } from 'formik';
+import { AuthContext } from '../../Providers/AuthProvider';
 
 const AddNewCraft = () => {
+    const { user } = useContext(AuthContext);
+
     const { values, setValues, handleSubmit, handleBlur, handleChange, errors, setErrors, touched } = useFormik({
         initialValues: {
             name: '',
@@ -20,18 +23,21 @@ const AddNewCraft = () => {
         //     password: Yup.string().required("Password is Required")
         // }),
         onSubmit: (values) => {
-        
+            const preparedData = { ...values, createdBy: user.email };
+
+
             fetch('http://localhost:3000/add', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
                 },
-                body: JSON.stringify(values)
+                body: JSON.stringify(preparedData)
             })
                 .then(response => response.json())
                 .then(data => console.log(data))
         }
     });
+
 
     return (
         <div className='pt-20  bg-[#faf7f2]'>
