@@ -3,17 +3,17 @@ import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
-// import ErrorTooltip from '../ErrorTooltip/ErrorTooltip';
-// import { AuthContext } from '../../Providers/AuthProvider';
+import ErrorTooltip from '../ErrorTooltip/ErrorTooltip';
+import { AuthContext } from '../../Providers/AuthProvider';
+import { ToastContainer, toast } from 'react-toastify';
 // import { GoEyeClosed } from 'react-icons/go';
 // import { RxEyeOpen } from 'react-icons/rx';
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
     const navigate = useNavigate()
 
-    // const { createUserWithEmail } = useContext(AuthContext);
+    const { registerWithEmailPassword } = useContext(AuthContext);
 
     const [showPassword, setShowPassword] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
@@ -37,35 +37,34 @@ const Register = () => {
 
         }),
         onSubmit: (values) => {
-            console.log(values)
-            // setLoaderVisible(true);
-            // createUserWithEmail(values?.email, values?.password)
-            //     .then(result => {
-            //         setLoaderVisible(false);
-            //         toast.success('You have successfully registered', {
-            //             position: "top-right",
-            //             autoClose: 1000,
-            //             hideProgressBar: false,
-            //             closeOnClick: true,
-            //             pauseOnHover: true,
-            //             draggable: true,
-            //             progress: undefined,
-            //             theme: "colored",
-            //             onClose: () => {
-            //                 navigate('/');
-            //             }
-            //         });
-            //     })
-            //     .catch(error => {
-            //         setLoaderVisible(false);
-            //         setErrorMessage(error?.message.includes('auth/email-already-in-use') ? 'This email has already been used' : error?.message);
-            //     })
+            setLoaderVisible(true);
+            registerWithEmailPassword(values?.email, values?.password)
+                .then(result => {
+                    setLoaderVisible(false);
+                    toast.success('You have successfully registered', {
+                        position: "top-right",
+                        autoClose: 1000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                        onClose: () => {
+                            navigate('/');
+                        }
+                    });
+                })
+                .catch(error => {
+                    setLoaderVisible(false);
+                    setErrorMessage(error?.message.includes('auth/email-already-in-use') ? 'This email has already been used' : error?.message);
+                })
         }
     });
 
     return (
         <>
-            {/* <ToastContainer /> */}
+            <ToastContainer />
 
             <div className='container py-20'>
 
@@ -87,12 +86,12 @@ const Register = () => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                             />
-                            {/* {touched.email && errors.email && (
+                            {touched.email && errors.email && (
                                 <ErrorTooltip
                                     content={errors.email}
                                     placement="right"
                                 />
-                            )} */}
+                            )}
                         </div>
 
                         <div className='relative'>
@@ -116,12 +115,12 @@ const Register = () => {
                                 }
                             </span> */}
 
-                            {/* {touched.password && errors.password && (
+                            {touched.password && errors.password && (
                                 <ErrorTooltip
                                     content={errors.password}
                                     placement="right"
                                 />
-                            )} */}
+                            )}
                         </div>
 
 
@@ -146,12 +145,12 @@ const Register = () => {
                                 }
                             </span> */}
 
-                            {/* {touched.confirmPassword && errors.confirmPassword && (
+                            {touched.confirmPassword && errors.confirmPassword && (
                                 <ErrorTooltip
                                     content={errors.confirmPassword}
                                     placement="right"
                                 />
-                            )} */}
+                            )}
                         </div>
 
                         <button type='submit' className='common-button bg-[#E3B577] w-full py-3 rounded-lg'>Submit</button>
