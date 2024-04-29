@@ -8,11 +8,14 @@ import Register from "./Layout/LoginRegister/Register";
 import AllCraft from "./Layout/AllCraftList/AllCraft";
 import AddNewCraft from "./Layout/AddNewCraft/AddNewCraft";
 import MyCreated from "./Layout/MyCraft/MyCreated";
+import ErrorPage from "./Layout/ErrorPage/ErrorPage";
+import Details from "./Layout/Details/Details";
 
 export const Router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -37,6 +40,10 @@ export const Router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />
+      },
+      {
+        path: "/details/:craftId",
+        element: <Details />
       },
     ]
   },

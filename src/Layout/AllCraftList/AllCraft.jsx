@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { TbSquareAsterisk } from 'react-icons/tb';
+import { useNavigate } from 'react-router-dom';
 
 const AllCraft = () => {
 
     const [allCraft, setAllCraft] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch('http://localhost:3000/all')
@@ -31,7 +34,7 @@ const AllCraft = () => {
                             </div>
                             <p>{craft?.description}</p>
                             <div className="">
-                                <button className="btn bg-green-500 text-white hover:bg-green-600 w-full" onClick={() => navigate(`details/${craft?.id}`)}>View Property</button>
+                                <button className="btn bg-green-500 text-white hover:bg-green-600 w-full" onClick={() => navigate(`/details/${craft?._id}`)}>View Property</button>
                             </div>
                         </div>
                     </div>
