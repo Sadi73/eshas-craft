@@ -1,16 +1,23 @@
-import React, { useContext } from 'react';
-import { Link, useNavigate, } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useLocation, useNavigate, } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
 import { AiFillGoogleCircle } from 'react-icons/ai';
 import { FaGithub } from 'react-icons/fa';
 import { AuthContext } from '../../Providers/AuthProvider';
+import ErrorTooltip from '../ErrorTooltip/ErrorTooltip';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 const Login = () => {
     const navigate = useNavigate();
+    const location = useLocation();
 
-    const { signInWithGoogle } = useContext(AuthContext)
+    const [loaderVisible, setLoaderVisible] = useState(false);
+    const [authError, setAuthError] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+
+    const { signInWithGoogle, loginWithEmailPassword } = useContext(AuthContext)
 
     const { values, setValues, handleSubmit, handleBlur, handleChange, errors, setErrors, touched } = useFormik({
         initialValues: {
@@ -23,7 +30,30 @@ const Login = () => {
         }),
         onSubmit: (values) => {
 
-            console.log(values)
+            setLoaderVisible(true);
+            setAuthError(false);
+            loginWithEmailPassword(values?.email, values?.password)
+                .then(result => {
+                    setLoaderVisible(false);
+                    toast.success('Log in successfull', {
+                        position: "top-right",
+                        autoClose: 1000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                        onClose: () => {
+                            navigate(location?.state ? location?.state : '/');
+                        }
+                    });
+
+                })
+                .catch(error => {
+                    setLoaderVisible(false);
+                    setAuthError(true);
+                })
         }
     });
 
@@ -41,11 +71,15 @@ const Login = () => {
     return (
         <>
 
+            <ToastContainer />
+
             <div className='container py-20'>
 
                 <div className='form-container bg-black bg-opacity-40 md:max-w-[500px] p-12 mx-auto'>
                     <h1 className='text-white text-5xl text-center mb-10 font-rancho'>Log <span className='text-[#E3B577]'>In!</span></h1>
 
+                    {authError &&
+                        <p className='text-red-600 font-medium mb-3'>Invalid Email or Password </p>}
 
                     <form
                         onSubmit={handleSubmit}
@@ -60,17 +94,17 @@ const Login = () => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                             />
-                            {/* {touched.email && errors.email && (
+                            {touched.email && errors.email && (
                                 <ErrorTooltip
                                     content={errors.email}
                                     placement="right"
                                 />
-                            )} */}
+                            )}
                         </div>
 
                         <div className='relative'>
                             <input
-                                // type={showPassword ? "text" : "password"}
+                                type={showPassword ? "text" : "password"}
                                 name='password'
                                 className={`w-full mb-4  py-2 pl-3  rounded-lg ${touched.password && errors.password ? 'border-2 border-red-500' : ''}`}
                                 placeholder='Enter Password'
@@ -85,17 +119,17 @@ const Login = () => {
                                 }
                             </span> */}
 
-                            {/* {touched.password && errors.password && (
+                            {touched.password && errors.password && (
                                 <ErrorTooltip
                                     content={errors.password}
                                     placement="right"
                                 />
-                            )} */}
+                            )}
                         </div>
 
                         <button type='submit' className='common-button bg-[#E3B577] w-full py-3 rounded-lg'>Submit</button>
 
-                        {/* {loaderVisible && <span className="loading loading-dots loading-lg"></span>} */}
+                        {loaderVisible && <span className="loading loading-dots loading-lg"></span>}
 
                     </form>
 
@@ -110,12 +144,12 @@ const Login = () => {
                             />
                         </button>
 
-                        <button>
+                        {/* <button>
                             <FaGithub
                                 className='text-white text-2xl'
-                            // onClick={handleGithubSignIn}
+                                onClick={handleGithubSignIn}
                             />
-                        </button>
+                        </button> */}
                     </div>
 
                     <div>
