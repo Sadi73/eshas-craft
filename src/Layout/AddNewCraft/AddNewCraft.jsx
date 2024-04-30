@@ -7,6 +7,7 @@ import ErrorTooltip from '../ErrorTooltip/ErrorTooltip';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const AddNewCraft = () => {
     const params = useParams();
@@ -37,7 +38,7 @@ const AddNewCraft = () => {
             const preparedData = { ...values, createdBy: user.email };
 
             if (params?.craftId) {
-                fetch(`http://localhost:3000/update/${params?.craftId}`, {
+                fetch(`https://craft-by-esha.vercel.app/update/${params?.craftId}`, {
                     method: 'PUT',
                     headers: {
                         'content-type': 'application/json'
@@ -146,6 +147,10 @@ const AddNewCraft = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Esha's Craft | Add New</title>
+            </Helmet>
+
             <ToastContainer />
 
             <div className='pt-20   mb-20'>

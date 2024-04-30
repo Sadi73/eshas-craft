@@ -64,6 +64,11 @@ const Register = () => {
 
     return (
         <>
+
+            <Helmet>
+                <title>Esha's Craft | Register</title>
+            </Helmet>
+
             <ToastContainer />
 
             <div className='container py-20'>

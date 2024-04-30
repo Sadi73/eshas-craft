@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 
 
@@ -18,6 +19,11 @@ const Details = () => {
 
     return (
         <div className='py-32'>
+
+            <Helmet>
+                <title>Esha's Craft | Details</title>
+            </Helmet>
+
             <h1 className='text-5xl text-center outfit-font'>Item Details</h1>
 
             <div className="card lg:card-side bg-base-100 shadow-xl  md:w-[80%] mx-auto  mb-20 min-h-[500px]">

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 import { Modal } from 'antd';
+import { Helmet } from 'react-helmet-async';
 
 const MyCreated = () => {
     const { user } = useContext(AuthContext);
@@ -34,6 +35,10 @@ const MyCreated = () => {
 
     return (
         <div className='pt-32 mb-20 min-h-screen'>
+
+            <Helmet>
+                <title>Esha's Craft | My Created</title>
+            </Helmet>
 
             <Modal
                 title="Delete Item"

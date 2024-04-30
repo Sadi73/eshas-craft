@@ -8,6 +8,7 @@ import { AuthContext } from '../../Providers/AuthProvider';
 import ErrorTooltip from '../ErrorTooltip/ErrorTooltip';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from 'react-helmet-async';
 
 
 const Login = () => {
@@ -71,6 +72,10 @@ const Login = () => {
 
     return (
         <>
+
+            <Helmet>
+                <title>Esha's Craft | Login</title>
+            </Helmet>
 
             <ToastContainer />
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { TbSquareAsterisk } from 'react-icons/tb';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -18,6 +19,9 @@ const AllCraft = () => {
     return (
 
         <div className='pt-32 min-h-[90vh]'>
+             <Helmet>
+                <title>Esha's Craft | All Craft</title>
+            </Helmet>
             <h1 className='text-5xl trirong-font text-center  mb-3'>All Craft Items</h1>
             <p className='text-lg trirong-font text-center mb-10'>-------- These craft items have been added by all users including you --------</p>
 
