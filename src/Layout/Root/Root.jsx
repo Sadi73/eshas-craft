@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from '../Homepage/Navbar';
+// import  from '../Homepage/Navbar';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { ThreeCircles } from 'react-loader-spinner';
+import Footer from '../Homepage/Footer';
 
 const Root = () => {
     const { loader } = useContext(AuthContext);
@@ -22,6 +24,7 @@ const Root = () => {
             <div>
                 < Navbar />
                 <Outlet />
+                <Footer />
             </div >
     );
 };

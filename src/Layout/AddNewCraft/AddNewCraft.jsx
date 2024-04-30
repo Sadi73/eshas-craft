@@ -81,13 +81,13 @@ const AddNewCraft = () => {
         <>
             <ToastContainer />
 
-            <div className='pt-20  bg-[#faf7f2]'>
-                <div className='md:w-[50%] mx-auto'>
+            <div className='pt-20   mb-20'>
+                <div className='md:w-[50%] bg-[#faf7f2] mx-auto py-10 pl-20'>
                     <form onSubmit={handleSubmit}>
                         <table className=''>
                             <tbody>
                                 <tr>
-                                    <td className='w-1/4'>Craft Name</td>
+                                    <td className='w-1/4'>Craft Name <span className='text-red-500 text-xl'>*</span></td>
                                     <td className='relative'>
                                         <input
                                             type="text"
@@ -107,7 +107,7 @@ const AddNewCraft = () => {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Description</td>
+                                    <td>Description <span className='text-red-500 text-xl'>*</span></td>
                                     <td className='relative'>
                                         <input
                                             type="text"
@@ -127,7 +127,7 @@ const AddNewCraft = () => {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Category</td>
+                                    <td>Category <span className='text-red-500 text-xl'>*</span></td>
                                     <td className='relative'>
                                         <input
                                             type="text"
@@ -147,7 +147,7 @@ const AddNewCraft = () => {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Price</td>
+                                    <td>Price <span className='text-red-500 text-xl'>*</span></td>
                                     <td className='relative'>
                                         <input
                                             type="text"
@@ -167,7 +167,7 @@ const AddNewCraft = () => {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>ImageURL</td>
+                                    <td>ImageURL <span className='text-red-500 text-xl'>*</span></td>
                                     <td className='relative'>
                                         <input
                                             type="text"
@@ -227,7 +227,7 @@ const AddNewCraft = () => {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Color</td>
+                                    <td>Color <span className='text-red-500 text-xl'>*</span></td>
                                     <td className='relative'>
                                         <input
                                             type="text"
@@ -247,7 +247,7 @@ const AddNewCraft = () => {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Availability</td>
+                                    <td>Availability <span className='text-red-500 text-xl'>*</span></td>
                                     <td className='relative'>
                                         <input
                                             type="text"
@@ -268,7 +268,7 @@ const AddNewCraft = () => {
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td><button type='submit' className='btn w-full'>Submit</button></td>
+                                    <td><button type='submit' className='btn w-full bg-green-500 hover:bg-green-700 text-white'>Submit</button></td>
                                 </tr>
                             </tbody>
                         </table>

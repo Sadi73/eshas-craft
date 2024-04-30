@@ -13,9 +13,9 @@ const categories = ['Wooden Furniture & Sculptures', 'Wooden Home Decor', 'Woode
 
 const CategoriesList = () => {
     return (
-        <div className='w-[80%] mx-auto my-10'>
+        <div className='w-[80%] mx-auto my-20'>
             <h1 className='text-[#b18b5e] trirong-font text-5xl text-center'>Categories</h1>
-            <p className='text-center'>------ You can find these kind of crafts ------</p>
+            <p className='text-center mb-10'>------ You can find these kind of crafts ------</p>
 
             <Swiper
                 effect={'coverflow'}

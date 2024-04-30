@@ -26,7 +26,7 @@ const MyCreated = () => {
                             <figure><img src={craft?.imageURL} className='w-full h-64' alt="craft-image" /></figure>
                             {/* <p className='absolute bg-green-500 text-white py-2 px-4 font-bold rounded-lg top-2 right-2'>{craft?.status}</p> */}
                             <div className="card-body" >
-                                <p>{craft?.price}</p>
+                                <p>${craft?.price}</p>
                                 <div className='flex items-center justify-between'>
                                     <h2 className="card-title">{craft?.name}</h2>
                                     <p className='grow-0 text-green-500'>{craft?.description}</p>
