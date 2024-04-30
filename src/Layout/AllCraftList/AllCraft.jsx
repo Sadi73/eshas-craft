@@ -17,24 +17,32 @@ const AllCraft = () => {
 
     return (
 
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-[90%] mx-auto pt-32 mb-20'>
+        <div className='pt-32'>
+            <h1 className='text-5xl trirong-font text-center  mb-3'>All Craft Items</h1>
+            <p className='text-lg trirong-font text-center mb-10'>-------- These craft items have been added by all users including you --------</p>
 
-            {allCraft.map(craft =>
-                <div key={craft?._id} data-aos="fade-up">
-                    <div className="card card-compact  bg-base-100 shadow-xl h-[420px]">
-                        <figure><img src={craft?.imageURL} className='w-full h-48' alt="craft-image" /></figure>
-                        <div className="card-body text-center" >
-                            <h2 className="text-3xl font-bold text-center">{craft?.name}</h2>
-                            <p>${craft?.price}</p>
-                            <p>Availability: {craft?.availability}</p>
-                            <div className="">
-                                <button className="btn bg-green-500 text-white hover:bg-green-600 w-full" onClick={() => navigate(`/details/${craft?._id}`)}>View Product</button>
+
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-[90%] mx-auto  mb-20'>
+
+
+                {allCraft.map(craft =>
+                    <div key={craft?._id} data-aos="fade-up">
+                        <div className="card card-compact  bg-base-100 shadow-xl h-[420px]">
+                            <figure><img src={craft?.imageURL} className='w-full h-48' alt="craft-image" /></figure>
+                            <div className="card-body text-center" >
+                                <h2 className="text-3xl font-bold text-center">{craft?.name}</h2>
+                                <p>${craft?.price}</p>
+                                <p>Availability: {craft?.availability}</p>
+                                <div className="">
+                                    <button className="btn bg-green-500 text-white hover:bg-green-600 w-full" onClick={() => navigate(`/details/${craft?._id}`)}>View Product</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            )
-            }
+                )
+                }
+            </div>
+
         </div>
     );
 };

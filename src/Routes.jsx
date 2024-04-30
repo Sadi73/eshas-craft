@@ -10,6 +10,7 @@ import AddNewCraft from "./Layout/AddNewCraft/AddNewCraft";
 import MyCreated from "./Layout/MyCraft/MyCreated";
 import ErrorPage from "./Layout/ErrorPage/ErrorPage";
 import Details from "./Layout/Details/Details";
+import PrivateRoute from "./Layout/PrivateRoute/PrivateRoute";
 
 export const Router = createBrowserRouter([
   {
@@ -27,11 +28,11 @@ export const Router = createBrowserRouter([
       },
       {
         path: "/add-new",
-        element: <AddNewCraft />
+        element: <PrivateRoute><AddNewCraft /></PrivateRoute>
       },
       {
         path: "/my-list",
-        element: <MyCreated />
+        element: <PrivateRoute><MyCreated /></PrivateRoute>
       },
       {
         path: "/login",
@@ -43,7 +44,7 @@ export const Router = createBrowserRouter([
       },
       {
         path: "/details/:craftId",
-        element: <Details />
+        element: <PrivateRoute><Details /></PrivateRoute>
       },
     ]
   },

@@ -82,7 +82,8 @@ const AddNewCraft = () => {
             <ToastContainer />
 
             <div className='pt-20   mb-20'>
-                <div className='md:w-[50%] bg-[#faf7f2] mx-auto py-10 pl-20'>
+                <div className='md:w-[50%] bg-[#faf7f2] mx-auto py-10 pl-24'>
+                    <h1 className='text-3xl text-center mb-4 font-medium trirong-font'>Add New Craft</h1>
                     <form onSubmit={handleSubmit}>
                         <table className=''>
                             <tbody>
