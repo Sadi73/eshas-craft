@@ -1,6 +1,11 @@
 import React from 'react';
-import { TbSquareAsterisk } from 'react-icons/tb';
+import { } from 'react-icons/tb';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import img1 from '../../../src/assets/1.jpg';
+import img2 from '../../../src/assets/2.jpg';
+import img3 from '../../../src/assets/3.jpg';
+import img4 from '../../../src/assets/4.jpg';
+import img5 from '../../../src/assets/5.jpg';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -8,6 +13,8 @@ import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 
 import { EffectCoverflow, Pagination } from 'swiper/modules';
+
+const images = [img1, img2, img3, img4, img5]
 
 const categories = ['Wooden Furniture & Sculptures', 'Wooden Home Decor', 'Wooden Utensils and Kitchenware', 'Jute Home Decor', 'Jute Kitchenware & utensils', 'Jute and wooden jewellery']
 
@@ -33,14 +40,18 @@ const CategoriesList = () => {
                 modules={[EffectCoverflow, Pagination]}
                 className="mySwiper"
             >
-                {/* <SwiperSlide>
-                    <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-                </SwiperSlide> */}
                 {categories.map((category, index) =>
                     <SwiperSlide key={index} >
-                        <span className={`category-${index} bg-red-300 w-[500px] h-[300px] flex justify-center items-center text-xl`}>
-                            <h1>{category}</h1>
-                        </span>
+
+                        <div className="hero min-h-[500px]" style={{ backgroundImage: `url(${images[index]})` }}>
+                            <div className="hero-overlay bg-opacity-60"></div>
+                            <div className="hero-content text-center text-neutral-content">
+                                <div className="max-w-md">
+                                    <h1 className="mb-5 text-5xl font-bold">{category}</h1>
+                                   
+                                </div>
+                            </div>
+                        </div>
                     </SwiperSlide>)}
 
             </Swiper>

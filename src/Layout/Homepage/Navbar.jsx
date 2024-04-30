@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 
 const Navbar = () => {
-    const { user , logOut} = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
 
     const navItem = <>
         <li className='trirong-font font-medium'><NavLink to='/'>Home</NavLink></li>
@@ -15,8 +15,8 @@ const Navbar = () => {
 
     const handleLogOut = () => {
         logOut()
-        .then(result => console.log(result))
-        .catch(error => console.log(error))
+            .then(result => console.log(result))
+            .catch(error => console.log(error))
     }
 
     return (
@@ -27,7 +27,7 @@ const Navbar = () => {
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </div>
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-
+                        {navItem}
                     </ul>
                 </div>
                 <Link to='/' className="text-2xl outfit-medium font-bold text-[#b18b5e]">Esha's Craft</Link>
@@ -47,7 +47,7 @@ const Navbar = () => {
                             </div>
                         </div>
                         <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                           
+
                             <li className='pl-2 font-medium'>{user.email}</li>
                             <li onClick={handleLogOut}><a>Logout</a></li>
                         </ul>
