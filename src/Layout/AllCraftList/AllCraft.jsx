@@ -20,21 +20,21 @@ const AllCraft = () => {
             {allCraft.map(craft =>
                 <div key={craft?._id} data-aos="fade-up">
                     <div className="card card-compact  bg-base-100 shadow-xl h-[500px]">
-                        <figure><img src={craft?.image} className='w-full h-64' alt="craft-image" /></figure>
-                        <p className='absolute bg-green-500 text-white py-2 px-4 font-bold rounded-lg top-2 right-2'>{craft?.status}</p>
+                        <figure><img src={craft?.imageURL} className='w-full h-64' alt="craft-image" /></figure>
+                        {/* <p className='absolute bg-green-500 text-white py-2 px-4 font-bold rounded-lg top-2 right-2'>{craft?.status}</p> */}
                         <div className="card-body" >
                             <p>{craft?.price}</p>
                             <div className='flex items-center justify-between'>
-                                <h2 className="card-title">{craft?.estate_title}</h2>
-                                <p className='grow-0 text-green-500'>{craft?.segment_name}</p>
+                                <h2 className="card-title">{craft?.name}</h2>
+                                <p className='grow-0 text-green-500'>{craft?.description}</p>
                             </div>
                             <div className='flex items-center gap-2'>
                                 <TbSquareAsterisk />
-                                <p>{craft?.area}</p>
+                                <p>{craft?.createdBy}</p>
                             </div>
                             <p>{craft?.description}</p>
                             <div className="">
-                                <button className="btn bg-green-500 text-white hover:bg-green-600 w-full" onClick={() => navigate(`/details/${craft?._id}`)}>View Property</button>
+                                <button className="btn bg-green-500 text-white hover:bg-green-600 w-full" onClick={() => navigate(`details/${craft?._id}`)}>View Property</button>
                             </div>
                         </div>
                     </div>

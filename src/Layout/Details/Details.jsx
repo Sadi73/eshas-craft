@@ -11,21 +11,27 @@ const Details = () => {
         fetch(`https://craft-by-esha.vercel.app/details/${params?.craftId}`)
             .then(response => response.json())
             .then(data => {
-                setDetails(data);
+                setDetails(data[0]);
             });
     }, []);
 
-    console.log(details)
 
     return (
-        <div className="card lg:card-side bg-base-100 shadow-xl py-20 md:w-[80%] mx-auto py-30 mb-20 min-h-[500px]">
-            <figure><img src={details?.image} alt="Album" className='h-96 ml-10'/></figure>
+        <div className="card lg:card-side bg-base-100 shadow-xl  md:w-[80%] mx-auto py-32 mb-20 min-h-[500px]">
+            <figure><img src={details?.imageURL} alt="Album" className='h-96 ml-10' /></figure>
             <div className="card-body">
-                <h2 className="card-title">{details?.estate_title}</h2>
+                <h2 className="card-title">{details?.name}</h2>
                 <p>{details?.description}</p>
-                <p>Location: {details?.location}</p>
-                <p>Area: {details?.area}</p>
-                <p>Price: {details?.price}</p>
+
+                <p>Category: {details?.category}</p>
+                <p>Color: {details?.color}</p>
+                <p>Available: {details?.availability}</p>
+                <p>Created By: {details?.createdBy}</p>
+
+                <div>
+                    <button className='btn mr-3 bg-green-500 hover:bg-green-700 text-white'>Edit</button>
+                    <button className='btn mr-3 bg-green-500 hover:bg-green-700 text-white'>Delete</button>
+                </div>
 
             </div>
         </div>
