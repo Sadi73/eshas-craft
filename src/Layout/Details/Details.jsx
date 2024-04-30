@@ -8,7 +8,7 @@ const Details = () => {
     const [details, setDetails] = useState({})
 
     useEffect(() => {
-        fetch(`http://localhost:3000/details/${params?.craftId}`)
+        fetch(`https://craft-by-esha.vercel.app/details/${params?.craftId}`)
             .then(response => response.json())
             .then(data => {
                 setDetails(data);

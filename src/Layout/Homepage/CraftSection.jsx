@@ -8,7 +8,7 @@ const CraftSection = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://localhost:3000/all')
+        fetch('https://craft-by-esha.vercel.app/all')
             .then(res => res.json())
             .then(data => setAllCraft(data))
 

@@ -8,7 +8,7 @@ const MyCreated = () => {
     const [myCreatedCraft, setMyCreatedCraft] = useState([])
 
     useEffect(() => {
-        fetch(`http://localhost:3000/craft?email=${user.email}`)
+        fetch(`https://craft-by-esha.vercel.app/craft?email=${user.email}`)
             .then(res => res.json())
             .then(data => setMyCreatedCraft(data))
     }, []);

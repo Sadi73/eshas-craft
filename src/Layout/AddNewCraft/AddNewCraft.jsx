@@ -34,7 +34,7 @@ const AddNewCraft = () => {
         onSubmit: (values) => {
             const preparedData = { ...values, createdBy: user.email };
 
-            fetch('http://localhost:3000/add', {
+            fetch('https://craft-by-esha.vercel.app/add', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
