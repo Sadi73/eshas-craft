@@ -31,12 +31,6 @@ const Details = () => {
                     <p>Available: {details?.availability}</p>
                     <p>Created By: {details?.createdBy}</p>
 
-                    <div>
-                        <button className='btn mr-3 bg-green-500 hover:bg-green-700 text-white'>Edit</button>
-                        <button className='btn mr-3 bg-green-500 hover:bg-green-700 text-white'>Delete</button>
-
-                    </div>
-
                 </div>
             </div>
         </div>

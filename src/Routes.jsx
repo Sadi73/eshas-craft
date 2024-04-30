@@ -46,6 +46,10 @@ export const Router = createBrowserRouter([
         path: "/details/:craftId",
         element: <PrivateRoute><Details /></PrivateRoute>
       },
+      {
+        path: "/update/:craftId",
+        element: <PrivateRoute><AddNewCraft /></PrivateRoute>
+      },
     ]
   },
 ]);

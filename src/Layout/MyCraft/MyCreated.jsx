@@ -2,9 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 import { Modal } from 'antd';
-import { ToastContainer, toast } from 'react-toastify';
-
-import 'react-toastify/dist/ReactToastify.css';
 
 const MyCreated = () => {
     const { user } = useContext(AuthContext);
@@ -17,41 +14,27 @@ const MyCreated = () => {
 
 
     const handleDeleteItem = () => {
-        fetch(`http://localhost:3000/delete/${idToDelete}`, {
+        fetch(`https://craft-by-esha.vercel.app/delete/${idToDelete}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 if (data?.deletedCount === 1) {
-                    setReload(!reload);
-                    toast('🦄 Wow so easy!', {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                        transition: Bounce,
-                    });
                     setConfirmModalVisible(false);
-
+                    setReload(!reload);
                 }
             })
     }
 
     useEffect(() => {
-        fetch(`http://localhost:3000/craft?email=${user.email}`)
+        fetch(`https://craft-by-esha.vercel.app/craft?email=${user.email}`)
             .then(res => res.json())
             .then(data => setMyCreatedCraft(data))
     }, [reload]);
 
     return (
-        <div className='pt-32 mb-20'>
+        <div className='pt-32 mb-20 min-h-screen'>
 
-            <ToastContainer />
             <Modal
                 title="Delete Item"
                 style={{
@@ -78,7 +61,9 @@ const MyCreated = () => {
                                 <p>${craft?.price}</p>
                                 <p>Availability: {craft?.availability}</p>
                                 <div className=" flex justify-between">
-                                    <button className="btn bg-green-500 text-white hover:bg-green-600">Edit</button>
+                                    <button className="btn bg-green-500 text-white hover:bg-green-600"
+                                        onClick={() => navigate(`/update/${craft?._id}`)}
+                                    >Edit</button>
                                     <button
                                         className="btn border border-red-500 bg-white text-red-500 hover:text-white hover:bg-red-600"
                                         onClick={() => {
@@ -86,7 +71,9 @@ const MyCreated = () => {
                                             setConfirmModalVisible(true);
                                         }}
                                     >Delete</button>
-                                    <button className="btn bg-green-500 text-white hover:bg-green-600" onClick={() => navigate(`/details/${craft?._id}`)}>View Product</button>
+                                    <button className="btn bg-green-500 text-white hover:bg-green-600"
+                                        onClick={() => navigate(`/details/${craft?._id}`)}
+                                    >View Product</button>
                                 </div>
                             </div>
                         </div>

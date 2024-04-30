@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './styles.css';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
@@ -6,8 +6,10 @@ import { AuthContext } from '../../Providers/AuthProvider';
 import ErrorTooltip from '../ErrorTooltip/ErrorTooltip';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useParams } from 'react-router-dom';
 
 const AddNewCraft = () => {
+    const params = useParams();
     const { user } = useContext(AuthContext);
 
     const { values, setValues, handleSubmit, handleBlur, handleChange, errors, setErrors, touched, resetForm } = useFormik({
@@ -34,17 +36,35 @@ const AddNewCraft = () => {
         onSubmit: (values) => {
             const preparedData = { ...values, createdBy: user.email };
 
-            fetch('https://craft-by-esha.vercel.app/add', {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(preparedData)
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data?.acknowledged) {
-                        toast.success('Craft Added successfull', {
+            if (params?.craftId) {
+                fetch(`http://localhost:3000/update/${params?.craftId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(preparedData)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data?.acknowledged) {
+                            toast.success('Craft Updated successfull', {
+                                position: "top-right",
+                                autoClose: 1000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "colored",
+
+                            });
+                            resetForm();
+
+                        }
+                    }
+                    )
+                    .catch(error => {
+                        toast.warn('Something Wrong. Try again!!', {
                             position: "top-right",
                             autoClose: 1000,
                             hideProgressBar: false,
@@ -55,27 +75,74 @@ const AddNewCraft = () => {
                             theme: "colored",
 
                         });
-                        resetForm();
-
-                    }
-                }
-                )
-                .catch(error => {
-                    toast.warn('Something Wrong. Try again!!', {
-                        position: "top-right",
-                        autoClose: 1000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "colored",
-
-                    });
+                    })
+            } else {
+                fetch('https://craft-by-esha.vercel.app/add', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(preparedData)
                 })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data?.acknowledged) {
+                            toast.success('Craft Added successfull', {
+                                position: "top-right",
+                                autoClose: 1000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "colored",
+
+                            });
+                            resetForm();
+
+                        }
+                    }
+                    )
+                    .catch(error => {
+                        toast.warn('Something Wrong. Try again!!', {
+                            position: "top-right",
+                            autoClose: 1000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "colored",
+
+                        });
+                    })
+            }
         }
     });
 
+    useEffect(() => {
+        if (params?.craftId) {
+            fetch(`https://craft-by-esha.vercel.app/details/${params?.craftId}`)
+                .then(response => response.json())
+                .then(data => {
+                    debugger
+                    // setDetails(data[0]);
+                    // console.log(data);
+                    setValues({
+                        ...values,
+                        name: data[0]?.name,
+                        description: data[0]?.description,
+                        category: data[0]?.category,
+                        price: data[0]?.price,
+                        imageURL: data[0]?.imageURL,
+                        materialsUsed: data[0]?.materialsUsed,
+                        craftingTechnique: data[0]?.craftingTechnique,
+                        color: data[0]?.color,
+                        availability: data[0]?.availability
+                    })
+                });
+        }
+    }, [])
 
     return (
         <>
